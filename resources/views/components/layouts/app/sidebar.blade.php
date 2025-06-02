@@ -4,8 +4,14 @@
             [
                 'name' => 'Dashboard',
                 'icon' => 'home',
-                'route' => route('dashboard'),
+                'url' => route('dashboard'),
                 'current' => request()->routeIs('dashboard'),
+            ],
+            [
+                'name' => 'Categorías',
+                'icon' => 'funnel',
+                'url' => route('admin.categories.index'),
+                'current' => request()->routeIs('admin.categories.*'),
             ],
         ],
     ];
@@ -30,7 +36,7 @@
             @foreach ($groups as $group => $links)
                 <flux:navlist.group :heading="$group" class="grid">
                     @foreach ($links as $link)
-                        <flux:navlist.item :icon="$link['icon']" :href="$link['route']" :current="$link['current']"
+                        <flux:navlist.item :icon="$link['icon']" :href="$link['url']" :current="$link['current']"
                             wire:navigate>{{ $link['name'] }}
                         </flux:navlist.item>
                     @endforeach

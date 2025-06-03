@@ -1,17 +1,23 @@
 <x-layouts.app>
 
-    <flux:breadcrumbs class="mb-8">
-
-        <flux:breadcrumbs.item :href="route('dashboard')">
-            Dashboard
-        </flux:breadcrumbs.item>
-
-        <flux:breadcrumbs.item>
-            Categorías
-        </flux:breadcrumbs.item>
-
-    </flux:breadcrumbs>
-
+    <div class="mb-4 flex justify-between items-center">
+        <flux:breadcrumbs >
+            
+            <flux:breadcrumbs.item :href="route('dashboard')">
+                Dashboard
+            </flux:breadcrumbs.item>
+            
+            <flux:breadcrumbs.item>
+                Categorías
+            </flux:breadcrumbs.item>
+            
+        </flux:breadcrumbs>
+        
+        <a href="{{route('admin.categories.create')}}" class="btn btn-blue text-xs">
+            Nuevo
+        </a>
+    </div>
+        
 
 
     <div class="relative overflow-x-auto">

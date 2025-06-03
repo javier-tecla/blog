@@ -22,6 +22,7 @@
 
 <head>
     @include('partials.head')
+
 </head>
 
 <body class="min-h-screen bg-white dark:bg-zinc-800">
@@ -139,6 +140,13 @@
     {{ $slot }}
 
     @fluxScripts
+
+    @if (session('swal'))
+        
+        <script>
+            Swal.fire(@json(session('swal')));
+        </script>
+    @endif
 </body>
 
 </html>

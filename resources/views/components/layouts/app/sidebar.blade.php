@@ -141,12 +141,7 @@
 
     @fluxScripts
 
-    @if (session('swal'))
-        
-        <script>
-            Swal.fire(@json(session('swal')));
-        </script>
-    @endif
+    
 </body>
 
 </html>

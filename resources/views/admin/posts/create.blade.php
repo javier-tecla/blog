@@ -22,9 +22,10 @@
 
             @csrf
 
-            <flux:input label="Título" name="title" value="{{old('title')}}" placeholder="Escribe el titulo del post"/>
-
-            <flux:input label="Slug" name="slug" value="{{old('slug')}}" placeholder="Escribe el slug del post"/>
+            <flux:input label="Título" name="title" value="{{old('title')}}" placeholder="Escribe el titulo del post"  oninput="string_to_slug(this.value, '#slug')"/>
+               
+            <flux:input label="Slug" id="slug" name="slug" value="{{old('slug')}}" placeholder="Escribe el slug del post"/>
+                
 
             <flux:select label="Categoría" name="category_id">
                 @foreach ($categories as $category)

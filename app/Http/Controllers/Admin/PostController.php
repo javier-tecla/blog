@@ -24,7 +24,6 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-
         return view('admin.posts.create', compact('categories'));
     }
 
@@ -65,7 +64,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $categories = Category::all();
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -73,7 +73,25 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required',
+            'slug' => 'required|unique:posts,slug,'. $post->id,
+            'category_id' => 'required|exists:categories,id',
+            'excerpt' => 'nullable',
+            'content' => 'nullable',
+            'is_published' => 'required|boolean',
+        ]);
+
+        $post->update($data);
+
+         session()->flash('swal', [
+            'icon' => 'success',
+            'title' => '¡Bien hecho!',
+            'text' => 'El post se ha actualizado correctamente'
+        ]);
+
+        return redirect()->route('admin.posts.edit', $post);
+
     }
 
     /**

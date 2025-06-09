@@ -16,12 +16,26 @@
 
     </flux:breadcrumbs>
 
-    <div class="card">
+    
+    <form action="{{route('admin.posts.update', $post)}}" method="POST" enctype="multipart/form-data">
+        
+        @csrf
+        @method('PUT')
 
-        <form action="{{route('admin.posts.update', $post)}}" method="POST" class="space-y-4">
+        <div class="relative mb-2">
 
-            @csrf
-            @method('PUT')
+            <img class="w-full aspect-video object-cover object-center" src="{{$post->image_path ? Storage::url($post->image_path) : 'https://thumb.ac-illust.com/b1/b170870007dfa419295d949814474ab2_t.jpeg' }}" alt="">
+
+            <div class="absolute top-8 right-8">
+                <label class="bg-white px-4 py-2 rounded-lg cursor-pointer">
+                    Cambiar imagen
+                    <input class="hidden" type="file" name="image" accept="image/*">
+                </label>
+            </div>
+        </div>
+
+
+        <div class="card space-y-4">
 
             <flux:input label="Título" name="title" value="{{old('title', $post->title)}}" placeholder="Escribe el titulo del post" />
                
@@ -63,9 +77,7 @@
                 </flux:button>
 
             </div>
-
-        </form>
-
-    </div>
+        </div>
+    </form>
 
 </x-layouts.app>

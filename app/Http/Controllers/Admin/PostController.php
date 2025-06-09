@@ -40,7 +40,7 @@ class PostController extends Controller
         ]);
 
         $data['user_id'] = auth()->id();
-
+        
         $post = Post::create($data);
 
         session()->flash('swal', [

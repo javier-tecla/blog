@@ -54,7 +54,27 @@
 
              <flux:textarea label="Contenido" name="content" rows="16">{{old('content', $post->content)}}</flux:textarea>
 
-             <div class="flex space-x-3">
+             <div>
+                <p class="text-sm font-medium mb-1">Etiquetas</p>
+             </div>
+
+             <ul>
+                @foreach ($tags as $tag)
+                    <li>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" name="tags[]" value="{{ $tag->id }}"@checked(in_array($tag->id, old('tags', $post->tags->pluck('id')->toArray())))>
+                            <span>
+                                {{ $tag->name }}
+                            </span>
+                        </label>
+                    </li>
+                @endforeach
+             </ul>
+
+             <div>
+                <p class="text-sm font-medium mb-1">Estado</p>
+
+                <div class="flex space-x-3">
                 <label class="flex items-center">
                     <input type="radio" name="is_published" value="0" @checked(old('is_published', $post->is_published) == 0)>
                     <span class="ml-1">
@@ -68,6 +88,8 @@
                         Publicado
                     </span>
                 </label>
+                 </div>
+
              </div>
 
             <div class="flex justify-end">
